@@ -44,7 +44,7 @@ class CreateAjaxCommand extends Command
 
     private function createAjaxResponseFacade()
     {
-        $root = __DIR__ . '/../../Facades/';
+        $root = app_path('Facades');
         if (!is_dir($root)) {
             mkdir($root, 0755);
         }
@@ -59,12 +59,12 @@ class AjaxResponseFacade extends Facade
         return \'AjaxResponseService\';
     }
 }';
-        file_put_contents($root . 'AjaxResponseFacade.php', $content);
+        file_put_contents($root . '/AjaxResponseFacade.php', $content);
     }
 
     private function createAjaxResponse()
     {
-        $root = __DIR__ . '/../../Services/';
+        $root = app_path('Services');
         if (!is_dir($root)) {
             mkdir($root, 0755);
         }
@@ -94,6 +94,6 @@ class AjaxResponse
         return $this->ajaxResponse(0, $extra, $message);
     }
 }';
-        file_put_contents($root . 'AjaxResponse.php', $content);
+        file_put_contents($root . '/AjaxResponse.php', $content);
     }
 }
