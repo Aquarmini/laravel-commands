@@ -5,7 +5,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "App\\Console\\Commands": "src"
+            "App\\Console\\Commands\\": "src"
         }
     },
     "require": {
