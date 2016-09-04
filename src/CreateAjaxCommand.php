@@ -45,7 +45,7 @@ class CreateAjaxCommand extends Command
         if ($res !== true) {
             $this->info($res);
         }
-        $this->info('create file success');
+        $this->info('Command execution success...');
     }
 
     private function createAjaxResponseFacade()
