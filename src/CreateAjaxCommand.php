@@ -37,8 +37,14 @@ class CreateAjaxCommand extends Command
      */
     public function handle()
     {
-        $this->createAjaxResponse();
-        $this->createAjaxResponseFacade();
+        $res = $this->createAjaxResponse();
+        if ($res !== true) {
+            $this->info($res);
+        }
+        $res = $this->createAjaxResponseFacade();
+        if ($res !== true) {
+            $this->info($res);
+        }
         $this->info('create file success');
     }
 
@@ -47,6 +53,10 @@ class CreateAjaxCommand extends Command
         $root = app_path('Facades');
         if (!is_dir($root)) {
             mkdir($root, 0755);
+        }
+        $file = $root . '/AjaxResponseFacade.php';
+        if (file_exists($file)) {
+            return $file . ' is exists!';
         }
         $content = '<?php namespace App\Facades;
 
@@ -59,7 +69,8 @@ class AjaxResponseFacade extends Facade
         return \'AjaxResponseService\';
     }
 }';
-        file_put_contents($root . '/AjaxResponseFacade.php', $content);
+        file_put_contents($file, $content);
+        return true;
     }
 
     private function createAjaxResponse()
@@ -67,6 +78,10 @@ class AjaxResponseFacade extends Facade
         $root = app_path('Services');
         if (!is_dir($root)) {
             mkdir($root, 0755);
+        }
+        $file = $root . '/AjaxResponse.php';
+        if (file_exists($file)) {
+            return $file . ' is exists!';
         }
         $content = '<?php namespace App\Services;
 
@@ -94,6 +109,8 @@ class AjaxResponse
         return $this->ajaxResponse(0, $extra, $message);
     }
 }';
-        file_put_contents($root . '/AjaxResponse.php', $content);
+
+        file_put_contents($file, $content);
+        return true;
     }
 }
