@@ -66,7 +66,7 @@ class AjaxResponseFacade extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return \'AjaxResponseService\';
+        return \App\Services\AjaxResponse::class;
     }
 }';
         file_put_contents($file, $content);
