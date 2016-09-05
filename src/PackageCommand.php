@@ -60,8 +60,17 @@ class PackageCommand extends Command
     {
         $app = $this->getConfig();
         if ($app) {
-            \limx\func\File::copy($app['root'], $app['files'], $app['dst']);
-            \limx\func\File::zip(dirname($app['dst']), basename($app['dst']), dirname($app['dst']));
+            $res = \limx\func\File::copy($app['root'], $app['files'], $app['dst']);
+            if ($res === false) {
+                $this->error('the files copy failed');
+                return false;
+            }
+            $res = \limx\func\File::zip(dirname($app['dst']), basename($app['dst']), dirname($app['dst']));
+            if ($res === true) {
+                $this->info('package the program success');
+            } else {
+                $this->error('zip files failed:code=' . $res);
+            }
         }
     }
 
