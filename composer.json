@@ -9,6 +9,7 @@
         }
     },
     "require": {
-        "php": ">=5.4.0"
+        "php": ">=5.4.0",
+        "limingxinleo/limx-func": "~2.0.2"
     }
 }
