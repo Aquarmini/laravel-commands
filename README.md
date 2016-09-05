@@ -13,7 +13,8 @@ Commands\PackageCommand::class          make:limx-package       打包项目
 
 ## 使用方法
 AjaxResponseService
-1. 命令行运行 php artisan make:limx-ajax
-2. 在config/app.php的aliases数组中增加 'Ajax' => App\Facades\AjaxResponseFacade::class
-3. 控制器中使用 \Ajax::success($data);
+-------------------
+- 命令行运行 php artisan make:limx-ajax
+- 在config/app.php的aliases数组中增加 'Ajax' => App\Facades\AjaxResponseFacade::class
+- 控制器中使用 \Ajax::success($data);
 
