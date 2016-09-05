@@ -82,7 +82,7 @@ class PackageCommand extends Command
     {
         if ($this->isConfig()) {
             $app = include $this->file_name;
-            if (empty($app['root']) || empty($app['files'] || empty($app['dst']))) {
+            if (empty($app['root']) || empty($app['files']) || empty($app['dst'])) {
                 $this->error('please set your package config');
                 return false;
             }
