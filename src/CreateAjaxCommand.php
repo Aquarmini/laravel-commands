@@ -18,7 +18,7 @@ class CreateAjaxCommand extends Command
      *
      * @var string
      */
-    protected $description = '创建AjaxResponseService';
+    protected $description = 'create service AjaxResponse';
 
     /**
      * Create a new command instance.
