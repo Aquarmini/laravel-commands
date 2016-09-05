@@ -52,7 +52,7 @@ class CreateAjaxCommand extends Command
     {
         $root = app_path('Facades');
         if (!is_dir($root)) {
-            mkdir($root, 0755);
+            mkdir($root, 0755, true);
         }
         $file = $root . '/AjaxResponseFacade.php';
         if (file_exists($file)) {
@@ -77,7 +77,7 @@ class AjaxResponseFacade extends Facade
     {
         $root = app_path('Services');
         if (!is_dir($root)) {
-            mkdir($root, 0755);
+            mkdir($root, 0755, true);
         }
         $file = $root . '/AjaxResponse.php';
         if (file_exists($file)) {
