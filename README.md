@@ -16,5 +16,11 @@ AjaxResponseService
 -------------------
 - 命令行运行 php artisan make:limx-ajax
 - 在config/app.php的aliases数组中增加 'Ajax' => App\Facades\AjaxResponseFacade::class
-- 控制器中使用 \Ajax::success($data);
+- 控制器中使用 return \Ajax::success($data);
+
+PackageCommand
+--------------
+- 命令行运行 php artisan make:limx-package
+- 维护config/data/package.php
+- 再次运行 php artisan make:limx-package
 
