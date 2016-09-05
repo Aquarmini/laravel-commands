@@ -102,11 +102,17 @@ class PackageCommand extends Command
     private function createConfig()
     {
         $content = '<?php return [
-    \'root\' => \'\',
+    // 项目根目录
+    \'root\' => base_path(),
+    // 需要打包的相对文件夹
     \'files\' => [
-
+        \'app\',
+        \'resources\',
     ],
-    \'dst\' => \'\',
+    // 复制后的文件地址
+    // example E:\phpStudy\WWW\zips\laravel
+    // 压缩地址为 E:\phpStudy\WWW\zips\laravel.zip
+    \'dst\' => \'E:\phpStudy\WWW\zips\laravel\',
 ];';
         if (file_exists($this->file_name)) {
             $this->error($this->file_name . ' is exists!');
