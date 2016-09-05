@@ -86,7 +86,7 @@ class PackageCommand extends Command
                 $this->error('please set your package config');
                 return false;
             }
-            return true;
+            return $app;
         } else {
             $this->createConfig();
             $this->error('please set your package config');
