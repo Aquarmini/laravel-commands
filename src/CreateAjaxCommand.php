@@ -38,13 +38,9 @@ class CreateAjaxCommand extends Command
     public function handle()
     {
         $res = $this->createAjaxResponse();
-        if ($res !== true) {
-            $this->info($res);
-        }
+        if ($res === false) return;
         $res = $this->createAjaxResponseFacade();
-        if ($res !== true) {
-            $this->info($res);
-        }
+        if ($res === true) return;
         $this->info('Command execution success...');
     }
 
@@ -56,7 +52,8 @@ class CreateAjaxCommand extends Command
         }
         $file = $root . '/AjaxResponseFacade.php';
         if (file_exists($file)) {
-            return $file . ' is exists!';
+            $this->info($file . ' is exists!');
+            return false;
         }
         $content = '<?php namespace App\Facades;
 
@@ -81,7 +78,8 @@ class AjaxResponseFacade extends Facade
         }
         $file = $root . '/AjaxResponse.php';
         if (file_exists($file)) {
-            return $file . ' is exists!';
+            $this->info($file . ' is exists!');
+            return false;
         }
         $content = '<?php namespace App\Services;
 
