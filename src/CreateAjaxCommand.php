@@ -30,7 +30,7 @@ class CreateAjaxCommand extends Command
     protected $description = 'create service AjaxResponse';
 
     /**
-     * The console command description.
+     * The console tpl path.
      *
      * @var string
      */

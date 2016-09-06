@@ -29,12 +29,20 @@ class CreatePssCommand extends Command
     protected $description = 'create a pwd service';
 
     /**
+     * The console tpl path.
+     *
+     * @var string
+     */
+    protected $tpl = '';
+
+    /**
      * Create a new command instance.
      *
      * @return void
      */
     public function __construct()
     {
+        $this->tpl = dirname(__FILE__) . '/../tpl/pss/';
         parent::__construct();
     }
 
@@ -55,79 +63,31 @@ class CreatePssCommand extends Command
     private function createServiceFacade()
     {
         $root = app_path('Facades');
+        $filename = 'PwdSetServiceFacade.php';
         if (!is_dir($root)) {
             mkdir($root, 0755, true);
         }
-        $file = $root . '/PwdSetServiceFacade.php';
+        $file = $root . '/' . $filename;
         if (file_exists($file)) {
             $this->info($file . ' is exists!');
             return false;
         }
-        $content = '<?php
+        return copy($this->tpl . $filename, $file);
 
-namespace App\Facades;
-
-use Illuminate\Support\Facades\Facade;
-
-class PwdSetServiceFacade extends Facade
-{
-    protected static function getFacadeAccessor()
-    {
-        return \App\Services\PwdSetService::class;
-    }
-}';
-        file_put_contents($file, $content);
-        return true;
     }
 
     private function createService()
     {
         $root = app_path('Services');
+        $filename = 'PwdSetService.php';
         if (!is_dir($root)) {
             mkdir($root, 0755, true);
         }
-        $file = $root . '/PwdSetService.php';
+        $file = $root . '/' . $filename;
         if (file_exists($file)) {
             $this->info($file . ' is exists!');
             return false;
         }
-        $content = '<?php
-namespace App\Services;
-class PwdSetService
-{
-    private $key = \'your sercet key\';
-    private $type = \'md5\';
-
-    public function __construct()
-    {
-        //$this->key=config();
-    }
-
-    /**
-     * [pwd 用户名的名文密码转化为加密密码]
-     * @author limx
-     * @param $pwd 名文密码
-     * @return 密文密码
-     */
-    public function pwd($pwd)
-    {
-        return md5($this->key . md5($pwd));
-    }
-
-    /**
-     * [check 验证密码]
-     * @author limx
-     * @param $pwd 名文密码
-     * @param $seckey 密文密码
-     * @return bool
-     */
-    public function check($pwd, $seckey)
-    {
-        return $this->pwd($pwd) === $seckey;
-    }
-}';
-
-        file_put_contents($file, $content);
-        return true;
+        return copy($this->tpl . $filename, $file);
     }
 }
