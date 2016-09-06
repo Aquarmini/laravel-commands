@@ -40,7 +40,7 @@ class CreateAjaxCommand extends Command
         $res = $this->createAjaxResponse();
         if ($res === false) return;
         $res = $this->createAjaxResponseFacade();
-        if ($res === true) return;
+        if ($res === false) return;
         $this->info('Command execution success...');
     }
 
