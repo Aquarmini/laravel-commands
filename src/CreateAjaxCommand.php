@@ -30,12 +30,20 @@ class CreateAjaxCommand extends Command
     protected $description = 'create service AjaxResponse';
 
     /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $tpl = '';
+
+    /**
      * Create a new command instance.
      *
      * @return void
      */
     public function __construct()
     {
+        $this->tpl = dirname(__FILE__) . '/../tpl/ajax/';
         parent::__construct();
     }
 
@@ -56,68 +64,31 @@ class CreateAjaxCommand extends Command
     private function createAjaxResponseFacade()
     {
         $root = app_path('Facades');
+        $filename = 'AjaxResponseFacade.php';
         if (!is_dir($root)) {
             mkdir($root, 0755, true);
         }
-        $file = $root . '/AjaxResponseFacade.php';
+        $file = $root . '/' . $filename;
         if (file_exists($file)) {
             $this->info($file . ' is exists!');
             return false;
         }
-        $content = '<?php namespace App\Facades;
 
-use Illuminate\Support\Facades\Facade;
-
-class AjaxResponseFacade extends Facade
-{
-    protected static function getFacadeAccessor()
-    {
-        return \App\Services\AjaxResponse::class;
-    }
-}';
-        file_put_contents($file, $content);
-        return true;
+        return copy($this->tpl . $filename, $file);
     }
 
     private function createAjaxResponse()
     {
         $root = app_path('Services');
+        $filename = 'AjaxResponse.php';
         if (!is_dir($root)) {
             mkdir($root, 0755, true);
         }
-        $file = $root . '/AjaxResponse.php';
+        $file = $root . '/' . $filename;
         if (file_exists($file)) {
             $this->info($file . ' is exists!');
             return false;
         }
-        $content = '<?php namespace App\Services;
-
-class AjaxResponse
-{
-    protected function ajaxResponse($status = 1, $data = [], $message = \'\')
-    {
-        $out = [
-            \'status\' => $status,
-            \'message\' => $message,
-            \'data\' => $data,
-            \'timestamp\' => time()
-        ];
-
-        return response()->json($out);
-    }
-
-    public function success($data = null)
-    {
-        return $this->ajaxResponse(1, $data);
-    }
-
-    public function fail($message, $extra = [])
-    {
-        return $this->ajaxResponse(0, $extra, $message);
-    }
-}';
-
-        file_put_contents($file, $content);
-        return true;
+        return copy($this->tpl . $filename, $file);
     }
 }
