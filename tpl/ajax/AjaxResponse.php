@@ -44,12 +44,18 @@ class AjaxResponse
     }
 
     /**
-     * [fail 返回错误信息]
+     * [error 返回错误信息]
      * @author limx
      * @param $message 错误提示
      * @param array $extra 额外的数据包
      * @return \Illuminate\Http\JsonResponse
      */
+    public function error($message, $extra = [])
+    {
+        return $this->ajaxResponse(0, $extra, $message);
+    }
+
+    /** 下个版本去掉 */
     public function fail($message, $extra = [])
     {
         return $this->ajaxResponse(0, $extra, $message);
