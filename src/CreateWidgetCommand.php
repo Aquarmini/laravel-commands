@@ -12,7 +12,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
-class CreateHelperCommand extends Command
+class CreateWidgetCommand extends Command
 {
     /**
      * The name and signature of the console command.
