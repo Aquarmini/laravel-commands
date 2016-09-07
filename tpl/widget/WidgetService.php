@@ -12,10 +12,10 @@ class WidgetService
         $sex = ['男', '女'];
         $contest = '';
         foreach ($sex as $v) {
-            $contest .= '<option value="{$v}" ';
+            $contest .= "<option value='{$v}'";
             if ($id == $v)
-                $contest .= ' checked="checked" ';
-            $contest .= ' >{$v}</option>';
+                $contest .= " checked='checked' ";
+            $contest .= " >{$v}</option>";
 
         }
         echo $contest;
