@@ -66,7 +66,7 @@ class PackageCommand extends Command
                 return false;
             }
             $vi = empty($app['vi']) ? 'master' : $app['vi'];
-            $zipname = basename($app['dst']) . '.v.' . $vi . '.zip';
+            $zipname = basename($app['dst']) . '_vi.' . $vi . '.' . time() . '.zip';
             $res = \limx\func\File::zip(dirname($app['dst']), basename($app['dst']), dirname($app['dst']), $zipname);
             if ($res === true) {
                 $this->info('package the program success');
