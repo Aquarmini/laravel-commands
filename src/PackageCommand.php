@@ -65,7 +65,9 @@ class PackageCommand extends Command
                 $this->error('the files copy failed');
                 return false;
             }
-            $res = \limx\func\File::zip(dirname($app['dst']), basename($app['dst']), dirname($app['dst']));
+            $vi = empty($app['vi']) ? 'master' : $app['vi'];
+            $zipname = basename($app['dst']) . '.v.' . $vi . '.zip';
+            $res = \limx\func\File::zip(dirname($app['dst']), basename($app['dst']), dirname($app['dst']), $zipname);
             if ($res === true) {
                 $this->info('package the program success');
             } else {
@@ -122,6 +124,9 @@ class PackageCommand extends Command
     // 样例地址 E:\phpStudy\WWW\zips\laravel
     // 压缩地址为 E:\phpStudy\WWW\zips\laravel.zip
     \'dst\' => \'\',
+    // 打包版本号
+    \'vi\' => \'\',
+
 ];';
         if (file_exists($this->file_name)) {
             $this->error($this->file_name . ' is exists!');
