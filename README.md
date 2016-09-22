@@ -1,4 +1,4 @@
-# laravel-commands laravel的命令扩展
+# laravel-commands laravel的命令扩展 适用于5.2.* 版本
 ## 使用composer下载扩展包
 ~~~
 composer limingxinleo/laravel-commands
