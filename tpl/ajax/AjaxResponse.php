@@ -55,9 +55,4 @@ class AjaxResponse
         return $this->ajaxResponse(0, $extra, $message);
     }
 
-    /** 下个版本去掉 */
-    public function fail($message, $extra = [])
-    {
-        return $this->ajaxResponse(0, $extra, $message);
-    }
 }
