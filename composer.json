@@ -11,6 +11,6 @@
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
-        "limingxinleo/limx-func": "^2.0"
+        "limingxinleo/limx-func": "~2.0"
     }
 }
